@@ -1,0 +1,4 @@
+test/build/
+test/.xmake/
+test/.vscode/.cache/
+test/.vscode/compile_commands.json
