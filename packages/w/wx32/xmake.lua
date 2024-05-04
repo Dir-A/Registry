@@ -1,13 +1,9 @@
 package("wx32")
     set_homepage("https://github.com/Dir-A/Wx32/")
     set_description("a win32 api wrapper using utf-8 and modern c++")
-    
-    -- locale test
-    set_sourcedir("D:/Space/Code/Git/Wx32")
+    add_urls("https://github.com/Dir-A/Wx32.git")
 
-    -- remote
-    -- add_urls("https://github.com/Dir-A/Wx32.git")
-    -- add_versions("v1.0", "ff70a51ca602762030604d96f6314bec46b0f584")
+    add_versions("v1.0", "ff70a51ca602762030604d96f6314bec46b0f584")
 
     -- link system lib
     if is_plat("windows", "mingw") then
