@@ -3,7 +3,7 @@ package("wx32")
     set_description("a win32 api wrapper using utf-8 and modern c++")
     add_urls("https://github.com/Dir-A/Wx32.git")
 
-    add_versions("v1.0", "976ff486cb014c6c8a2f0ea59ae7f3b364af64fd")
+    add_versions("v1.0", "e768c82b22c435ff2140454fcf0b13c01a717515")
 
     -- link system lib
     if is_plat("windows", "mingw") then
