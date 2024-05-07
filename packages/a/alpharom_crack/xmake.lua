@@ -6,7 +6,7 @@ package("alpharom_crack")
     add_versions("v1.0", "b5049b5351042ee6fc6f73c9cdd6b536d9a70878")
 
     -- requires
-    add_requires("microsoft-detours")
+    add_deps("microsoft-detours")
 
     -- link system lib
     if is_plat("windows", "mingw") then
