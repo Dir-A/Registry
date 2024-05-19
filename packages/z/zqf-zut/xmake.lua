@@ -5,6 +5,13 @@ package("zqf-zut")
 
     add_versions("v1.0", "37741d6306208c2fc894911fcde4a859a28846fa")
 
+    if is_plat("windows") or is_plat("mingw") then
+        add_defines("ZUT_WIN32")
+        add_deps("wx32")
+    elseif is_plat("linux") then
+        add_defines("ZUT_LINUX")
+    end
+
     -- on load, get and set configs
     on_load("windows", "mingw", function (package)
         --
