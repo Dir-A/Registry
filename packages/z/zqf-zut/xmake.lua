@@ -13,7 +13,7 @@ package("zqf-zut")
     -- on install, check configs and compile
     on_install("windows", "mingw", function (package)
         local configs = {}
-        if packageconfig("shared") then
+        if package:config("shared") then
             configs.kind = "shared"
         end
         import("package.tools.xmake").install(package, configs)
