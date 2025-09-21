@@ -1,6 +1,43 @@
-# VCPKG
+## Usage
 
-### Get VCPKG
+## vcpkg
+
+`vcpkg.json`
+
+```json
+{
+  "name": "zxpkg-test",
+  "version": "1.0",
+  "dependencies": [
+    "zqf-zut-zxjson"
+  ],
+  "vcpkg-configuration": {
+    "default-registry": {
+      "kind": "git",
+      "repository": "https://github.com/Microsoft/vcpkg",
+      "baseline": "29ff5b8131d0c6c8fcb8fbaef35992f0d507cd7c"
+    },
+    "registries": [
+      {
+        "kind": "git",
+        "repository": "https://github.com/ZQF-Zut/ZxPKG.git",
+        "baseline": "0a2858823b43f7945763faa5f1f39e7b859b5de5",
+        "packages": [
+          "zqf-*"
+        ]
+      }
+    ]
+  }
+}
+```
+
+## xrepo
+
+[WIP]
+
+# vcpkg
+
+### Get vcpkg
 
 ```shell
 git clone https://github.com/microsoft/vcpkg.git --depth=1 .vcpkg
