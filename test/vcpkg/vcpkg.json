@@ -14,8 +14,8 @@
     "registries": [
       {
         "kind": "git",
-        "repository": "https://github.com/ZQF-Zut/ZxPKG.git",
-        "baseline": "e003e8aba35175982945d16542b87e4226909474",
+        "repository": "https://github.com/Dir-A/Registry.git",
+        "baseline": "f9a876c26d38ea832080157ca138fc31f3504c02",
         "packages": [
           "zqf-*"
         ]
