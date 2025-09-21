@@ -2,10 +2,10 @@ set(VCPKG_LIBRARY_LINKAGE static)
 set(VCPKG_POLICY_SKIP_COPYRIGHT_CHECK enabled)
 
 vcpkg_from_git(
-    OUT_SOURCE_PATH SOURCE_PATH
-    URL https://github.com/ZQF-Zut/ZxJson.git
-    REF 372eb3c80affbaa9d75f42c32a0ae8296bcaa6e0
-    HEAD_REF master
+  OUT_SOURCE_PATH SOURCE_PATH
+  URL https://github.com/ZQF-Zut/ZxJson.git
+  REF 372eb3c80affbaa9d75f42c32a0ae8296bcaa6e0
+  HEAD_REF master
 )
 
 vcpkg_cmake_configure(SOURCE_PATH "${SOURCE_PATH}")

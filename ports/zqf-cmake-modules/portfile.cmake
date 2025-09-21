@@ -3,10 +3,10 @@ set(VCPKG_POLICY_ALLOW_EMPTY_FOLDERS enabled)
 set(VCPKG_POLICY_EMPTY_INCLUDE_FOLDER enabled)
 
 vcpkg_from_git(
-    OUT_SOURCE_PATH SOURCE_PATH
-    URL https://github.com/Dir-A/CMakeModules.git
-    REF 8741cc048049608d1d92d9a9febd3372c2ac5ebd
-    HEAD_REF master
+  OUT_SOURCE_PATH SOURCE_PATH
+  URL https://github.com/Dir-A/CMakeModules.git
+  REF 8741cc048049608d1d92d9a9febd3372c2ac5ebd
+  HEAD_REF master
 )
 
 vcpkg_cmake_configure(SOURCE_PATH "${SOURCE_PATH}")
