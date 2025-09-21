@@ -1,0 +1,2 @@
+The package zqf_cmake_modules provides CMake targets:
+    find_package(zqf_cmake_modules CONFIG REQUIRED)
