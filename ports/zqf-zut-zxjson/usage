@@ -1,0 +1,3 @@
+The package zqf_zut_zxjson provides CMake targets:
+    find_package(zqf_zut_zxjson CONFIG REQUIRED)
+    target_link_libraries(${PROJECT_NAME} PRIVATE ZQF::Zut::ZxJson)

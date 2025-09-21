@@ -3,6 +3,10 @@
     "zqf-cmake-modules": {
       "baseline": "1.0.0",
       "port-version": 0
+    },
+    "zqf-zut-zxjson": {
+      "baseline": "1.0.0",
+      "port-version": 0
     }
   }
 }
