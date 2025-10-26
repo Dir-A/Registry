@@ -52,6 +52,16 @@ endmacro()
 
 function(zqf_cef_config target)
   SET_EXECUTABLE_TARGET_PROPERTIES("${target}")
+
+  if(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
+    # ARC
+    option(OPTION_USE_ARC "Build with ARC (automatic Reference Counting) on macOS." ON)
+
+    if(OPTION_USE_ARC)
+      list(APPEND CEF_COMPILER_FLAGS -fobjc-arc)
+      set_target_properties(${PROJECT_NAME} PROPERTIES CLANG_ENABLE_OBJC_ARC "YES")
+    endif()
+  endif()
 endfunction()
 
 function(zqf_cef_copyfiles target)
