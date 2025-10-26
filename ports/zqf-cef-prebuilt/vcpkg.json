@@ -1,0 +1,15 @@
+{
+  "name": "zqf-cef-prebuilt",
+  "version": "141.0.11",
+  "description": "",
+  "dependencies": [
+    {
+      "name": "vcpkg-cmake",
+      "host": true
+    },
+    {
+      "name": "vcpkg-cmake-config",
+      "host": true
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "name": "zqf-kirix2-tjs2",
+  "version": "1.0.0",
+  "description": "",
+  "dependencies": [
+    "oniguruma",
+    {
+      "name": "vcpkg-cmake",
+      "host": true
+    },
+    {
+      "name": "vcpkg-cmake-config",
+      "host": true
+    },
+    "zqf-cmake-modules"
+  ]
+}

@@ -25,8 +25,7 @@
     "--background-index",
     "--clang-tidy",
     "-j=16",
-    "--compile-commands-dir=${workspaceFolder}/.vscode/",
-    "--header-insertion=never"
+    "--compile-commands-dir=${workspaceFolder}/.vscode/"
   ],
   // c_c++
   "C_Cpp.intelliSenseEngine": "disabled"

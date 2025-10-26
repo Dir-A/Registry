@@ -1,0 +1,5 @@
+The package zqf_cef_prebuilt provides CMake targets:
+    find_package(zqf_cef_prebuilt CONFIG REQUIRED)
+    zqf_cef_config(${PROJECT_NAME})
+    zqf_cef_copyfiles(${PROJECT_NAME})
+    target_link_libraries(${PROJECT_NAME} PRIVATE ZQF::CEF::CEF)

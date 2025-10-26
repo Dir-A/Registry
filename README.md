@@ -58,7 +58,7 @@ bootstrap-vcpkg.bat
 #### testing port
 
 ```shell
-.\.vcpkg\vcpkg.exe install zqf-cmake-modules --overlay-ports=ports
+.\.vcpkg\vcpkg.exe install zqf-cmake-modules --overlay-ports=ports --x-install-root=.build/installed --downloads-root=.build/downloads --x-buildtrees-root=.build/buildtrees --x-packages-root=.build/packages
 ```
 
 
