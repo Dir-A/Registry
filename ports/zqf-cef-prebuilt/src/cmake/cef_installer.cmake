@@ -33,11 +33,13 @@ function(cef_installer TARGET_NAME)
     DIRECTORY
     "${ZQF_CEF_PREBUILT_DIR}/Debug/"
     DESTINATION ${export_dir}/cef_root/Debug/
+    USE_SOURCE_PERMISSIONS
   )
   install(
     DIRECTORY
     "${ZQF_CEF_PREBUILT_DIR}/Release/"
     DESTINATION ${export_dir}/cef_root/Release/
+    USE_SOURCE_PERMISSIONS
   )
   install(
     DIRECTORY
