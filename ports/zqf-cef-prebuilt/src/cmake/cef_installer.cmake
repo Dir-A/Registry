@@ -41,11 +41,15 @@ function(cef_installer TARGET_NAME)
     DESTINATION ${export_dir}/cef_root/Release/
     USE_SOURCE_PERMISSIONS
   )
-  install(
-    DIRECTORY
-    "${ZQF_CEF_PREBUILT_DIR}/Resources/"
-    DESTINATION ${export_dir}/cef_root/Resources/
-  )
+
+  if(NOT CMAKE_SYSTEM_NAME STREQUAL "Darwin")
+    install(
+      DIRECTORY
+      "${ZQF_CEF_PREBUILT_DIR}/Resources/"
+      DESTINATION ${export_dir}/cef_root/Resources/
+    )
+  endif()
+
   install(
     DIRECTORY
     "${ZQF_CEF_PREBUILT_DIR}/include/"

@@ -52,24 +52,26 @@ endmacro()
 
 function(zqf_cef_config target)
   SET_EXECUTABLE_TARGET_PROPERTIES("${target}")
-
-  if(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
-    # ARC
-    option(OPTION_USE_ARC "Build with ARC (automatic Reference Counting) on macOS." ON)
-
-    if(OPTION_USE_ARC)
-      list(APPEND CEF_COMPILER_FLAGS -fobjc-arc)
-      set_target_properties(${PROJECT_NAME} PROPERTIES CLANG_ENABLE_OBJC_ARC "YES")
-    endif()
-  endif()
 endfunction()
 
 function(zqf_cef_copyfiles target)
-  set(target_dir "$<TARGET_FILE_DIR:${target}>")
-  COPY_FILES("${target}" "${CEF_BINARY_FILES}" "${CEF_BINARY_DIR}" "${target_dir}")
-  COPY_FILES("${target}" "${CEF_RESOURCE_FILES}" "${CEF_RESOURCE_DIR}" "${target_dir}")
+  if(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
+    set(target_dir "$<TARGET_BUNDLE_DIR:${target}>/../")
+    add_custom_command(
+      POST_BUILD
+      TARGET "${target}"
+      COMMAND ${CMAKE_COMMAND} -E copy_directory
+      "${CEF_BINARY_DIR}/Chromium Embedded Framework.framework"
+      "${target_dir}/Chromium Embedded Framework.framework"
+      VERBATIM
+    )
+  else()
+    set(target_dir "$<TARGET_FILE_DIR:${target}>")
+    COPY_FILES("${target}" "${CEF_BINARY_FILES}" "${CEF_BINARY_DIR}" "${target_dir}")
+    COPY_FILES("${target}" "${CEF_RESOURCE_FILES}" "${CEF_RESOURCE_DIR}" "${target_dir}")
 
-  if(EXISTS "${CEF_BINARY_DIR}/libminigbm.so")
-    COPY_FILES("${target}" "libminigbm.so" "${CEF_BINARY_DIR}" "${target_dir}")
+    if(EXISTS "${CEF_BINARY_DIR}/libminigbm.so")
+      COPY_FILES("${target}" "libminigbm.so" "${CEF_BINARY_DIR}" "${target_dir}")
+    endif()
   endif()
 endfunction()

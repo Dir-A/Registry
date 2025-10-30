@@ -17,3 +17,5 @@ vsxmake2022/
 # MacOS
 .DS_Store
 
+tests
+src
