@@ -5,7 +5,7 @@ set(VCPKG_POLICY_EMPTY_INCLUDE_FOLDER enabled)
 vcpkg_from_git(
   OUT_SOURCE_PATH SOURCE_PATH
   URL https://github.com/Dir-A/CMakeModules.git
-  REF 8741cc048049608d1d92d9a9febd3372c2ac5ebd
+  REF 4067aa73469e41c2dacaad50d43fe27ace4fe30a
   HEAD_REF master
 )
 

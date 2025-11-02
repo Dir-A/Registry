@@ -3,8 +3,7 @@ cmake_minimum_required(VERSION 3.25)
 
 # VCPKG
 if(ZQF_VCPKG)
-  include("cmake/ZQF_VCPKG.cmake")
-  zqf_vcpkg_startup()
+ include("cmake/modules/zqf_vcpkg.cmake")
 endif()
 
 # Project Name
