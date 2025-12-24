@@ -2,11 +2,12 @@ include_guard(GLOBAL)
 
 function(zqf_profiles_fetch)
   # ArgParse
-  set(options)
-  set(multiValueArgs)
-  set(oneValueArgs
+  set(options
     CLANGD
-    EDITOR_CONFIG)
+    EDITOR_CONFIG
+  )
+  set(multiValueArgs)
+  set(oneValueArgs)
   cmake_parse_arguments(ZQF "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
 
   if(ZQF_CLANGD)
