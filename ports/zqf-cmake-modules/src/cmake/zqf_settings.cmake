@@ -13,15 +13,27 @@ function(zqf_set_output_dir)
 endfunction()
 
 function(zqf_set_warning TARGET_NAME)
-  set(options)
-  set(multiValueArgs)
-  set(oneValueArgs
-    LEVEL
+  set(options
+    PRIVATE
+    PUBLIC
+    INTERFACE
+    AllExtra
+    All
   )
+  set(multiValueArgs)
+  set(oneValueArgs)
   cmake_parse_arguments(ZQF "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
 
-  if(ZQF_LEVEL STREQUAL "AllExtra")
-    target_compile_options(${TARGET_NAME} PRIVATE
+  if(ZQF_PUBLIC)
+    set(SCOPE PUBLIC)
+  elseif(ZQF_INTERFACE)
+    set(SCOPE INTERFACE)
+  else()
+    set(SCOPE PRIVATE)
+  endif()
+
+  if(ZQF_AllExtra)
+    target_compile_options(${TARGET_NAME} ${SCOPE}
       $<$<OR:$<C_COMPILER_ID:MSVC>,$<CXX_COMPILER_ID:MSVC>>:/W4> # msvc
       $<$<OR:$<C_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:GNU>>:-Wall -Wextra> # gcc
       $<$<OR:$<C_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:Clang>>: # clang
@@ -29,8 +41,8 @@ function(zqf_set_warning TARGET_NAME)
       $<$<OR:$<C_COMPILER_FRONTEND_VARIANT:MSVC>,$<CXX_COMPILER_FRONTEND_VARIANT:MSVC>>:/W4> # msvc frontend
       >
     )
-  elseif(ZQF_LEVEL STREQUAL "All")
-    target_compile_options(${TARGET_NAME} PRIVATE
+  elseif(ZQF_All)
+    target_compile_options(${TARGET_NAME} ${SCOPE}
       $<$<OR:$<C_COMPILER_ID:MSVC>,$<CXX_COMPILER_ID:MSVC>>:/W3> # msvc
       $<$<OR:$<C_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:GNU>>:-Wall> # gcc
       $<$<OR:$<C_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:Clang>>: # clang
@@ -41,4 +53,42 @@ function(zqf_set_warning TARGET_NAME)
   else()
     message(FATAL_ERROR "zqf_set_warning: unknown warning level")
   endif()
+endfunction()
+
+function(zqf_set_encoding)
+  set(options
+    PRIVATE
+    PUBLIC
+    INTERFACE
+    UTF8
+    SOURCE_UTF8
+    TARGET_UTF8
+  )
+  set(multiValueArgs)
+  set(oneValueArgs)
+  cmake_parse_arguments(ZQF "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
+
+  if(ZQF_PUBLIC)
+    set(SCOPE PUBLIC)
+  elseif(ZQF_INTERFACE)
+    set(SCOPE INTERFACE)
+  else()
+    set(SCOPE PRIVATE)
+  endif()
+
+  if(ZQF_UTF8 OR(ZQF_SOURCE_UTF8 AND ZQF_TARGET_UTF8))
+    set(flags "/utf-8")
+  elseif(ZQF_SOURCE_UTF8)
+    set(flags "/source-charset:utf-8")
+  elseif(ZQF_TARGET_UTF8)
+    set(flags "/execution-charset:utf-8")
+  else()
+    message(FATAL_ERROR "zqf_set_encoding: unknown encoding")
+  endif()
+
+  target_compile_options(${PROJECT_NAME} ${SCOPE}
+    $<$<OR:$<C_COMPILER_ID:MSVC>,$<CXX_COMPILER_ID:MSVC>>:${flags}> # msvc
+    $<$<OR:$<C_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:Clang>>:$<$<OR:$<C_COMPILER_FRONTEND_VARIANT:MSVC>,$<CXX_COMPILER_FRONTEND_VARIANT:MSVC>>:${flags}> # msvc frontend
+    >
+  )
 endfunction()
