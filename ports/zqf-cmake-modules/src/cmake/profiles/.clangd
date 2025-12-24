@@ -12,6 +12,7 @@ Diagnostics:
           - modernize-avoid-c-arrays
           - modernize-use-trailing-return-type
           - modernize-use-std-print
+          - modernize-use-nodiscard
           - misc-misplaced-const
           - readability-magic-numbers
           - readability-avoid-const-params-in-decls
@@ -25,6 +26,8 @@ Diagnostics:
           - cppcoreguidelines-avoid-magic-numbers
           - cppcoreguidelines-pro-type-reinterpret-cast
           - cppcoreguidelines-owning-memory
+          - cppcoreguidelines-avoid-c-arrays
+          - cppcoreguidelines-pro-type-vararg
 
         CheckOptions:
             readability-identifier-naming.ClassCase: CamelCase
@@ -43,11 +46,21 @@ Diagnostics:
             readability-implicit-bool-conversion.AllowPointerConditions: 1
             readability-simplify-boolean-expr.IgnoreMacros: 1
             misc-unused-parameters.IgnoreVirtual: 1
-            readability-identifier-length.IgnoredParameterNames: 'i|j|k|h|w|z|v|t'
-            readability-identifier-length.IgnoredVariableNames: 'i|j|k|h|w|z|v|t'
+            readability-identifier-naming.FunctionIgnoredRegexp: 'DL_|'
+            readability-identifier-length.IgnoredVariableNames: 'it|id|i|j|k|x|y|z|h|w|ms'
+            readability-identifier-length.IgnoredLoopCounterNames: 'it|id|i|j|k|x|y|z|h|w'
+            readability-identifier-length.IgnoredParameterNames: 'it|id|cb|i|j|k|x|y|z|h|w|ms'
             misc-non-private-member-variables-in-classes.IgnoreClassesWithAllMemberVariablesBeingPublic: 1
 
 Index:
   Background: Skip
-
+---
+If:
+  PathMatch: [.*/vcpkg/buildtrees/.*]
+Diagnostics:
+  Suppress: '*'
+  ClangTidy:
+    Remove: '*'
+Index:
+  Background: Skip
 

@@ -11,19 +11,13 @@ BraceWrapping:
   AfterFunction: true
   AfterNamespace: true
   BeforeLambdaBody: true
-AlignConsecutiveMacros:
-  Enabled: true
-  AcrossEmptyLines: true
-  AcrossComments: true
-AlignTrailingComments:
-  Kind: Always
-  OverEmptyLines: 2
 AlignAfterOpenBracket: AlwaysBreak
 AllowShortLoopsOnASingleLine: true
 AllowShortBlocksOnASingleLine: true
 AllowShortFunctionsOnASingleLine: Inline
 AllowShortIfStatementsOnASingleLine: Never
 AllowShortCaseLabelsOnASingleLine: true
+AllowShortEnumsOnASingleLine: true
 
 # Pointer
 DerivePointerAlignment: false
@@ -39,9 +33,8 @@ Cpp11BracedListStyle: false
 # ConstructorInitializers
 BreakConstructorInitializers: BeforeColon
 PackConstructorInitializers: NextLineOnly
-# namespace
+# Namespace
 NamespaceIndentation: All
 FixNamespaceComments: true
-
 # Template
 BreakTemplateDeclarations: Leave
