@@ -1,17 +1,20 @@
 include_guard(GLOBAL)
 
-function(zqf_profiles)
-  if(NOT EXISTS "${CMAKE_SOURCE_DIR}/.clangd")
-    file(COPY_FILE "${CMAKE_CURRENT_LIST_DIR}/profiles/.clangd" "${CMAKE_SOURCE_DIR}/.clangd")
+function(zqf_profiles_fetch)
+  # ArgParse
+  set(options)
+  set(multiValueArgs)
+  set(oneValueArgs
+    CLANGD
+    EDITOR_CONFIG)
+  cmake_parse_arguments(ZQF "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
+
+  if(ZQF_CLANGD)
+    file(COPY ${CMAKE_CURRENT_FUNCTION_LIST_DIR}/profiles/.clang-format DESTINATION ${CMAKE_CURRENT_SOURCE_DIR})
+    file(COPY ${CMAKE_CURRENT_FUNCTION_LIST_DIR}/profiles/.clangd DESTINATION ${CMAKE_CURRENT_SOURCE_DIR})
   endif()
 
-  if(NOT EXISTS "${CMAKE_SOURCE_DIR}/.clang-format")
-    file(COPY_FILE "${CMAKE_CURRENT_LIST_DIR}/profiles/.clang-format" "${CMAKE_SOURCE_DIR}/.clang-format")
-  endif()
-
-  if(NOT EXISTS "${CMAKE_SOURCE_DIR}/.editorconfig")
-    file(COPY_FILE "${CMAKE_CURRENT_LIST_DIR}/profiles/.editorconfig" "${CMAKE_SOURCE_DIR}/.editorconfig")
+  if(ZQF_EDITOR_CONFIG)
+    file(COPY ${CMAKE_CURRENT_FUNCTION_LIST_DIR}/profiles/.editorconfig DESTINATION ${CMAKE_CURRENT_SOURCE_DIR})
   endif()
 endfunction()
-
-zqf_profiles()

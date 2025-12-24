@@ -10,16 +10,16 @@ function(zqf_doxygen TARGET_NAME)
   )
   cmake_parse_arguments(ZQF "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
 
-  get_target_property(ZQF_TARGET_DIR ${TARGET_NAME} SOURCE_DIR)
-
   if(NOT ZQF_OUTPUT_DIR)
     set(ZQF_OUTPUT_DIR ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/docs)
   endif()
 
   find_package(Doxygen)
 
+  set(doxygen_target_name ${TARGET_NAME}_doxygen)
+
   if(NOT DOXYGEN_FOUND)
-    add_custom_target(doxygen COMMAND false COMMENT "Doxygen not found")
+    add_custom_target(${doxygen_target_name} COMMAND false COMMENT "Doxygen not found")
     return()
   endif()
 
@@ -48,5 +48,6 @@ function(zqf_doxygen TARGET_NAME)
   set(DOXYGEN_HTML_COLORSTYLE LIGHT)
   set(DOXYGEN_HTML_EXTRA_STYLESHEET ${doxygen-awesome-css_SOURCE_DIR}/doxygen-awesome.css ${doxygen-awesome-css_SOURCE_DIR}/doxygen-awesome-sidebar-only.css)
 
-  doxygen_add_docs(doxygen ${ZQF_TARGET_DIR} COMMENT "Generate HTML documentation")
+  get_target_property(ZQF_TARGET_DIR ${TARGET_NAME} SOURCE_DIR)
+  doxygen_add_docs(${doxygen_target_name} ${ZQF_TARGET_DIR} COMMENT "Generate HTML documentation")
 endfunction()
