@@ -92,3 +92,76 @@ function(zqf_set_encoding)
     >
   )
 endfunction()
+
+function(zqf_set_entry TARGET_NAME)
+  set(options
+    PRIVATE
+    PUBLIC
+    INTERFACE
+    HideConsoleWindow
+  )
+  set(multiValueArgs)
+  set(oneValueArgs)
+  cmake_parse_arguments(ZQF "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
+
+  if(ZQF_PUBLIC)
+    set(SCOPE PUBLIC)
+  elseif(ZQF_INTERFACE)
+    set(SCOPE INTERFACE)
+  else()
+    set(SCOPE PRIVATE)
+  endif()
+
+  if(ZQF_HideConsoleWindow)
+    target_link_options(${TARGET_NAME} ${SCOPE}
+      $<$<OR:$<C_COMPILER_ID:MSVC>,$<CXX_COMPILER_ID:MSVC>>:/SUBSYSTEM:WINDOWS /ENTRY:mainCRTStartup> # msvc
+      $<$<OR:$<C_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:Clang>>: # clang
+      $<$<OR:$<C_COMPILER_FRONTEND_VARIANT:MSVC>,$<CXX_COMPILER_FRONTEND_VARIANT:MSVC>>:/SUBSYSTEM:WINDOWS /ENTRY:mainCRTStartup> # msvc frontend
+      >
+    )
+  endif()
+endfunction()
+
+function(zqf_hide_deps_symbols TARGET_NAME)
+  get_target_property(target_type ${TARGET_NAME} TYPE)
+
+  if((NOT target_type STREQUAL "SHARED_LIBRARY") AND(NOT target_type STREQUAL "MODULE_LIBRARY"))
+    message(FATAL_ERROR "zqf_hide_deps_symbols: can only be applied to SHARED libraries")
+    return()
+  endif()
+
+  set(options
+    PRIVATE
+    PUBLIC
+    INTERFACE
+    All
+  )
+  set(multiValueArgs)
+  set(oneValueArgs)
+  cmake_parse_arguments(ZQF "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
+
+  if(ZQF_PUBLIC)
+    set(SCOPE PUBLIC)
+  elseif(ZQF_INTERFACE)
+    set(SCOPE INTERFACE)
+  else()
+    set(SCOPE PRIVATE)
+  endif()
+
+  if(ZQF_All)
+    target_link_options(${TARGET_NAME} ${SCOPE}
+      $<$<OR:$<C_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:GNU>>:-Wl,--exclude-libs,ALL> # gcc
+      $<$<OR:$<C_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:Clang>>: # clang
+      $<$<OR:$<C_COMPILER_FRONTEND_VARIANT:GNU>,$<CXX_COMPILER_FRONTEND_VARIANT:GNU>>:-Wl,--exclude-libs,ALL> # gnu frontend
+      >
+    )
+    target_link_options(${TARGET_NAME} ${SCOPE}
+      $<$<OR:$<C_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:GNU>>:-Wl,-Bsymbolic> # gcc
+      $<$<OR:$<C_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:Clang>>: # clang
+      $<$<OR:$<C_COMPILER_FRONTEND_VARIANT:GNU>,$<CXX_COMPILER_FRONTEND_VARIANT:GNU>>:-Wl,-Bsymbolic> # gnu frontend
+      >
+    )
+  else()
+    message(FATAL_ERROR "zqf_hide_deps_symbols: unknown level")
+  endif()
+endfunction()

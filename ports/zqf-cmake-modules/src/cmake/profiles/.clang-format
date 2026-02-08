@@ -19,6 +19,9 @@ AllowShortIfStatementsOnASingleLine: Never
 AllowShortCaseLabelsOnASingleLine: true
 AllowShortEnumsOnASingleLine: true
 
+# Macro
+IndentPPDirectives: AfterHash
+
 # Pointer
 DerivePointerAlignment: false
 PointerAlignment: Left
