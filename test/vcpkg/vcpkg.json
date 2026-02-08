@@ -1,5 +1,6 @@
 {
-  "name": "zxpkg-test",
+  "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg.schema.json",
+  "name": "zxjson-test",
   "version": "1.0",
   "dependencies": [
     "fmt",
@@ -15,7 +16,7 @@
       {
         "kind": "git",
         "repository": "https://github.com/Dir-A/Registry.git",
-        "baseline": "f9a876c26d38ea832080157ca138fc31f3504c02",
+        "baseline": "a30058c632ccf7530627f39eff624d495444d676",
         "packages": [
           "zqf-*"
         ]
