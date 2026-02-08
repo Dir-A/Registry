@@ -38,9 +38,9 @@ function(zqf_vcpkg_make_triplets zqf_vcpkg_root_dir)
     file(READ "${zqf_vcpkg_root_dir}/triplets/x64-windows.cmake" content)
     file(WRITE "${zqf_vcpkg_root_dir}/triplets/x64-windows-clang-cl.cmake" "${content}${config_option_x64}")
 
-    # x64-windows-clang-cl-static.cmake
+    # x64-windows-clang-cl-static-mt.cmake
     file(READ "${zqf_vcpkg_root_dir}/triplets/x64-windows-static.cmake" content)
-    file(WRITE "${zqf_vcpkg_root_dir}/triplets/x64-windows-clang-cl-static.cmake" "${content}${config_option_x64}")
+    file(WRITE "${zqf_vcpkg_root_dir}/triplets/x64-windows-clang-cl-static-mt.cmake" "${content}${config_option_x64}")
 
     # x64-windows-clang-cl-static-md.cmake
     file(READ "${zqf_vcpkg_root_dir}/triplets/x64-windows-static-md.cmake" content)
@@ -50,9 +50,9 @@ function(zqf_vcpkg_make_triplets zqf_vcpkg_root_dir)
     file(READ "${zqf_vcpkg_root_dir}/triplets/arm64-windows.cmake" content)
     file(WRITE "${zqf_vcpkg_root_dir}/triplets/arm64-windows-clang-cl.cmake" "${content}${config_option_arm64}")
 
-    # arm64-windows-clang-cl-static.cmake
+    # arm64-windows-clang-cl-static-mt.cmake
     file(READ "${zqf_vcpkg_root_dir}/triplets/community/arm64-windows-static.cmake" content)
-    file(WRITE "${zqf_vcpkg_root_dir}/triplets/arm64-windows-clang-cl-static.cmake" "${content}${config_option_arm64}")
+    file(WRITE "${zqf_vcpkg_root_dir}/triplets/arm64-windows-clang-cl-static-mt.cmake" "${content}${config_option_arm64}")
 
     # arm64-windows-clang-cl-static-md.cmake
     file(READ "${zqf_vcpkg_root_dir}/triplets/arm64-windows-static-md.cmake" content)
