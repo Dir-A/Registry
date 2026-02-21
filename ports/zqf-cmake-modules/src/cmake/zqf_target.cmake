@@ -200,12 +200,48 @@ function(zqf_target_entrypoint TARGET_NAME)
   elseif(ZQF_CustomEntry)
     if(CMAKE_LINKER MATCHES "link.exe")
       target_link_options(${TARGET_NAME} ${SCOPE}
-        /NODEFAULTLIB
         /ENTRY:${ZQF_CustomEntry}
       )
     endif()
   else()
     message(FATAL_ERROR "zqf_target_entrypoint: unknown option")
+  endif()
+endfunction()
+
+function(zqf_target_default_lib TARGET_NAME)
+  get_target_property(target_type ${TARGET_NAME} TYPE)
+
+  if(NOT(target_type MATCHES "EXECUTABLE|MODULE_LIBRARY"))
+    message(FATAL_ERROR "zqf_target_default_lib: can only be applied to EXECUTABLE|MODULE_LIBRARY target")
+    return()
+  endif()
+
+  set(options
+    PRIVATE
+    PUBLIC
+    INTERFACE
+    OFF
+  )
+  set(multiValueArgs)
+  set(oneValueArgs)
+  cmake_parse_arguments(ZQF "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
+
+  if(ZQF_PUBLIC)
+    set(SCOPE PUBLIC)
+  elseif(ZQF_INTERFACE)
+    set(SCOPE INTERFACE)
+  else()
+    set(SCOPE PRIVATE)
+  endif()
+
+  if(ZQF_OFF)
+    if(CMAKE_LINKER MATCHES "link.exe")
+      target_link_options(${TARGET_NAME} ${SCOPE}
+        /NODEFAULTLIB
+      )
+    endif()
+  else()
+    message(FATAL_ERROR "zqf_target_default_lib: unknown option")
   endif()
 endfunction()
 
