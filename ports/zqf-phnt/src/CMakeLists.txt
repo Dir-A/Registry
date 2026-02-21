@@ -5,7 +5,7 @@ if(NOT DEFINED PHNT_ROOT)
 endif()
 
 if(NOT EXISTS ${PHNT_ROOT})
-  message(FATAL_ERROR "not fond cef prebuilt files")
+  message(FATAL_ERROR "not fond phnt files")
 endif()
 
 project("zqf_phnt" VERSION 1.0 LANGUAGES C CXX)
