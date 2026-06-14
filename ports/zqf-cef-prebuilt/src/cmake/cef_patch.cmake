@@ -60,7 +60,7 @@ function(zqf_cef_prebuilt_copyfiles target)
     add_custom_command(
       POST_BUILD
       TARGET "${target}"
-      COMMAND ${CMAKE_COMMAND} -E copy_directory
+      COMMAND ${CMAKE_COMMAND} -E copy_directory_if_different
       "${CEF_BINARY_DIR}/Chromium Embedded Framework.framework"
       "${target_dir}/Chromium Embedded Framework.framework"
       VERBATIM
