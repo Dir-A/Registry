@@ -23,29 +23,29 @@ macro(CEF_STARTUP)
   list(REMOVE_ITEM CEF_COMPILER_FLAGS "/MP")
   list(REMOVE_ITEM CEF_COMPILER_DEFINES "_HAS_EXCEPTIONS=0")
 
-  if(NOT TARGET ZQF::CEF::CEF)
+  if(NOT TARGET ZQF::CEFPrebuilt::CEF)
     if(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
-      add_library(zqf_cef_cef INTERFACE)
-      add_library(ZQF::CEF::CEF ALIAS zqf_cef_cef)
-      target_link_libraries(zqf_cef_cef INTERFACE libcef_dll_wrapper ${CEF_STANDARD_LIBS})
+      add_library(zqf_cef_prebuilt_cef INTERFACE)
+      add_library(ZQF::CEFPrebuilt::CEF ALIAS zqf_cef_prebuilt_cef)
+      target_link_libraries(zqf_cef_prebuilt_cef INTERFACE libcef_dll_wrapper ${CEF_STANDARD_LIBS})
     else()
       # Add CEF C Libary Target
       ADD_LOGICAL_TARGET("libcef_lib" "${CEF_LIB_DEBUG}" "${CEF_LIB_RELEASE}")
 
       # C Library
-      add_library(zqf_cef_c_library INTERFACE)
-      add_library(ZQF::CEF::CLibrary ALIAS zqf_cef_c_library)
-      target_link_libraries(zqf_cef_c_library INTERFACE libcef_lib ${CEF_STANDARD_LIBS})
+      add_library(zqf_cefprebuilt_c_library INTERFACE)
+      add_library(ZQF::CEFPrebuilt::CLibrary ALIAS zqf_cefprebuilt_c_library)
+      target_link_libraries(zqf_cefprebuilt_c_library INTERFACE libcef_lib ${CEF_STANDARD_LIBS})
 
       # CXX Wrapper
-      add_library(zqf_cef_cxx_wrapper INTERFACE)
-      add_library(ZQF::CEF::CXXWrapper ALIAS zqf_cef_cxx_wrapper)
-      target_link_libraries(zqf_cef_cxx_wrapper INTERFACE libcef_dll_wrapper)
+      add_library(zqf_cefprebuilt_cxx_wrapper INTERFACE)
+      add_library(ZQF::CEFPrebuilt::CXXWrapper ALIAS zqf_cefprebuilt_cxx_wrapper)
+      target_link_libraries(zqf_cefprebuilt_cxx_wrapper INTERFACE libcef_dll_wrapper)
 
       # Combine C Libary And CXX Wrapper
-      add_library(zqf_cef_full INTERFACE)
-      add_library(ZQF::CEF::CEF ALIAS zqf_cef_full)
-      target_link_libraries(zqf_cef_full INTERFACE ZQF::CEF::CLibrary ZQF::CEF::CXXWrapper)
+      add_library(zqf_cefprebuilt_full INTERFACE)
+      add_library(ZQF::CEFPrebuilt::CEF ALIAS zqf_cefprebuilt_full)
+      target_link_libraries(zqf_cefprebuilt_full INTERFACE ZQF::CEFPrebuilt::CLibrary ZQF::CEFPrebuilt::CXXWrapper)
     endif()
   endif()
 endmacro()

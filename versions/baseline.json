@@ -2,7 +2,7 @@
   "default": {
     "zqf-cef-prebuilt": {
       "baseline": "148.0.7778.218",
-      "port-version": 0
+      "port-version": 1
     },
     "zqf-cmake-modules": {
       "baseline": "1.0.8",
