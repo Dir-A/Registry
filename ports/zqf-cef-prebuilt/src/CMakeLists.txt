@@ -11,7 +11,7 @@ endif()
 project("zqf_cef_prebuilt" VERSION 1.0 LANGUAGES C CXX)
 
 include("${CMAKE_CURRENT_SOURCE_DIR}/cmake/cef_patch.cmake")
-CEF_STARTUP()
+ZQF_CEF_PREBUILT_STARTUP()
 
 add_subdirectory(${CEF_LIBCEF_DLL_WRAPPER_PATH} libcef_dll_wrapper)
 target_compile_features(libcef_dll_wrapper PRIVATE cxx_std_20)
