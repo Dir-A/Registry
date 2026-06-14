@@ -1,6 +1,6 @@
 include_guard(GLOBAL)
 
-macro(CEF_STARTUP)
+macro(ZQF_CEF_PREBUILT_STARTUP)
   option(USE_ATL OFF)
   option(USE_SANDBOX OFF)
 
@@ -50,11 +50,11 @@ macro(CEF_STARTUP)
   endif()
 endmacro()
 
-function(zqf_cef_config target)
+function(zqf_cef_prebuilt_config target)
   SET_EXECUTABLE_TARGET_PROPERTIES("${target}")
 endfunction()
 
-function(zqf_cef_copyfiles target)
+function(zqf_cef_prebuilt_copyfiles target)
   if(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
     set(target_dir "$<TARGET_BUNDLE_DIR:${target}>/../")
     add_custom_command(

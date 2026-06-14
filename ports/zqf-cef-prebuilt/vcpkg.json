@@ -1,7 +1,7 @@
 {
   "name": "zqf-cef-prebuilt",
   "version": "148.0.7778.218",
-  "port-version": 1,
+  "port-version": 2,
   "description": "",
   "dependencies": [
     {

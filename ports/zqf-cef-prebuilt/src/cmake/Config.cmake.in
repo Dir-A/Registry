@@ -2,6 +2,6 @@
 
 set(CEF_ROOT "${CMAKE_CURRENT_LIST_DIR}/cef_root/")
 include("${CMAKE_CURRENT_LIST_DIR}/cmake/cef_patch.cmake")
-CEF_STARTUP()
+ZQF_CEF_PREBUILT_STARTUP()
 
 include("${CMAKE_CURRENT_LIST_DIR}/@TARGET_NAME@-targets.cmake")
