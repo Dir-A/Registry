@@ -8,7 +8,7 @@ function(zqf_vcpkg_fetch)
     return()
   endif()
 
-  set(zqf_vcpkg_tool_release_url "https://github.com/microsoft/vcpkg-tool/releases/download/2025-12-05")
+  set(zqf_vcpkg_tool_release_url "https://github.com/microsoft/vcpkg-tool/releases/download/${ZQF_VCPKG_VERSION}")
 
   if(WIN32)
     file(WRITE "${zqf_vcpkg_root_dir}/.vcpkg-root")
