@@ -31,8 +31,8 @@ endfunction()
 
 function(zqf_vcpkg_make_triplets zqf_vcpkg_root_dir)
   if(VCPKG_TARGET_TRIPLET MATCHES "windows-clang-cl")
-    set(config_option_x64 [[set(VCPKG_CMAKE_CONFIGURE_OPTIONS "-DCMAKE_C_COMPILER=clang-cl" "-DCMAKE_CXX_COMPILER=clang-cl" "-DCMAKE_C_COMPILER_TARGET=x86_64-pc-windows-msvc" "-DCMAKE_CXX_COMPILER_TARGET=x86_64-pc-windows-msvc")]])
-    set(config_option_arm64 [[set(VCPKG_CMAKE_CONFIGURE_OPTIONS "-DCMAKE_C_COMPILER=clang-cl" "-DCMAKE_CXX_COMPILER=clang-cl" "-DCMAKE_C_COMPILER_TARGET=arm64-pc-windows-msvc" "-DCMAKE_CXX_COMPILER_TARGET=arm64-pc-windows-msvc")]])
+    set(config_option_x64 [[set(VCPKG_CMAKE_CONFIGURE_OPTIONS "-DCMAKE_C_COMPILER=clang-cl.exe" "-DCMAKE_CXX_COMPILER=clang-cl.exe" "-DCMAKE_RC_FLAGS=-c65001 /DWIN32" "-DCMAKE_C_COMPILER_TARGET=x86_64-pc-windows-msvc" "-DCMAKE_CXX_COMPILER_TARGET=x86_64-pc-windows-msvc")]])
+    set(config_option_arm64 [[set(VCPKG_CMAKE_CONFIGURE_OPTIONS "-DCMAKE_C_COMPILER=clang-cl.exe" "-DCMAKE_CXX_COMPILER=clang-cl.exe" "-DCMAKE_RC_FLAGS=-c65001 /DWIN32" "-DCMAKE_C_COMPILER_TARGET=arm64-pc-windows-msvc" "-DCMAKE_CXX_COMPILER_TARGET=arm64-pc-windows-msvc")]])
 
     # x64-windows-clang-cl.cmake
     file(READ "${zqf_vcpkg_root_dir}/triplets/x64-windows.cmake" content)
