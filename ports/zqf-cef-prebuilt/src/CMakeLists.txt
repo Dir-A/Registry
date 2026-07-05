@@ -15,6 +15,13 @@ ZQF_CEF_PREBUILT_STARTUP()
 
 add_subdirectory(${CEF_LIBCEF_DLL_WRAPPER_PATH} libcef_dll_wrapper)
 target_compile_features(libcef_dll_wrapper PRIVATE cxx_std_20)
+target_compile_options(libcef_dll_wrapper PUBLIC
+  $<$<AND:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_FRONTEND_VARIANT:MSVC>>:
+  -Wno-missing-field-initializers
+  -Wno-undefined-var-template
+  -Wno-unknown-warning-option
+  >
+)
 
 include("${CMAKE_CURRENT_SOURCE_DIR}/cmake/cef_installer.cmake")
 cef_installer(
