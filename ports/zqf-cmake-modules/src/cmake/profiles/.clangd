@@ -22,6 +22,7 @@ Diagnostics:
           - misc-use-anonymous-namespace
           - llvm-qualified-auto
           - llvm-include-order
+          - llvm-prefer-static-over-anonymous-namespace
           - cppcoreguidelines-pro-bounds-pointer-arithmetic
           - cppcoreguidelines-avoid-magic-numbers
           - cppcoreguidelines-pro-type-reinterpret-cast
