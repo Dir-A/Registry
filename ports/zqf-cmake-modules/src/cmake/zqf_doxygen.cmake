@@ -11,7 +11,8 @@ function(zqf_doxygen TARGET_NAME)
   cmake_parse_arguments(ZQF "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
 
   if(NOT ZQF_OUTPUT_DIR)
-    set(ZQF_OUTPUT_DIR ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/docs)
+    get_target_property(target_output_dir ${TARGET_NAME} RUNTIME_OUTPUT_DIRECTORY)
+    set(ZQF_OUTPUT_DIR "${target_output_dir}/docs/${TARGET_NAME}")
   endif()
 
   find_package(Doxygen)
@@ -31,14 +32,15 @@ function(zqf_doxygen TARGET_NAME)
   set(DOXYGEN_DOT_TRANSPARENT YES)
   set(DOXYGEN_DOT_IMAGE_FORMAT svg)
   set(DOXYGEN_DOT_TRANSPARENT YES)
-  set(DOXYGEN_HTML_OUTPUT ${ZQF_OUTPUT_DIR})
+  set(DOXYGEN_HTML_OUTPUT "html")
+  set(DOXYGEN_OUTPUT_DIRECTORY "${ZQF_OUTPUT_DIR}")
 
   # UseDoxygenAwesomeCss
   include(FetchContent)
   FetchContent_Declare(
     doxygen-awesome-css
     GIT_REPOSITORY https://github.com/jothepro/doxygen-awesome-css.git
-    GIT_TAG v2.3.4
+    GIT_TAG v2.5.0
     GIT_SHALLOW TRUE
     GIT_DEPTH 1
   )
@@ -46,7 +48,7 @@ function(zqf_doxygen TARGET_NAME)
   set(DOXYGEN_DISABLE_INDEX NO)
   set(DOXYGEN_FULL_SIDEBAR NO)
   set(DOXYGEN_HTML_COLORSTYLE LIGHT)
-  set(DOXYGEN_HTML_EXTRA_STYLESHEET ${doxygen-awesome-css_SOURCE_DIR}/doxygen-awesome.css ${doxygen-awesome-css_SOURCE_DIR}/doxygen-awesome-sidebar-only.css)
+  set(DOXYGEN_HTML_EXTRA_STYLESHEET "${doxygen-awesome-css_SOURCE_DIR}/doxygen-awesome.css" "${doxygen-awesome-css_SOURCE_DIR}/doxygen-awesome-sidebar-only.css")
 
   get_target_property(ZQF_TARGET_DIR ${TARGET_NAME} SOURCE_DIR)
   doxygen_add_docs(${doxygen_target_name} ${ZQF_TARGET_DIR} COMMENT "Generate HTML documentation")
