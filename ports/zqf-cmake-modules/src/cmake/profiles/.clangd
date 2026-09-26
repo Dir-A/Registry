@@ -37,6 +37,8 @@ Diagnostics:
             readability-identifier-naming.ClassMemberPrefix: 'm_'
             readability-identifier-naming.UnionCase: CamelCase
             readability-identifier-naming.VariableCase: lower_case
+            readability-identifier-naming.GlobalConstantCase: CamelCase
+            readability-identifier-naming.GlobalConstantPrefix: 'k'
             readability-identifier-naming.GlobalVariableCase: 'camelBack'
             readability-identifier-naming.GlobalVariablePrefix: 'g_'
             readability-identifier-naming.GlobalVariableIgnoredRegexp: '^sg_.*'
